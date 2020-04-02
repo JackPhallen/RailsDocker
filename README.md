@@ -6,7 +6,14 @@ Docker setup for Ruby On Rails
 
 First we need to build our Docker container. Docker containers provide an isolated linux environment, similar to a virtual box, but without hosting an entire Linux Operating system. You can learn more about Docker here: https://docs.docker.com/
 
-### Step 1: Build container
+### Step 1: Download
+
+First you need to install Docker for your machine. Simply download Docker Desktop from https://www.docker.com/products/docker-desktop
+
+Next either clone this repository or download the Dockerfile. If you are using bundler, download the Dockerfile from 'withbundler/Dockerfile', otherwise use the Dockerfile in from 'withoutbundler/Dockerfile'.
+
+
+### Step 2: Build container
 
 Copy Dockerfile into the root directory of your Rails project and run the following command. Be sure to include the '.' at the end of the command!
 NOTE: 'railscont' can be replaced with any lowercase name you wish to use for your container name
@@ -14,7 +21,7 @@ NOTE: 'railscont' can be replaced with any lowercase name you wish to use for yo
 docker build -t railscont .
 ```
 
-### Step 2: Run container
+### Step 3: Run container
 
 When you run the container, it will also launch your rails server. To test this out, run the following command.
 ```
@@ -35,9 +42,9 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 Take a look at the 'PORTS' column to find the docker port. In this case, my Rails server is accessible at "http://0.0.0.0:32773/"
 
-That is it!. You now have a rails server running on Docker. However, you will need to rebuild the docker container anytime you modify your rails server. In the next step, we will setup a volume to automatically copy new changes to the docker container.
+That is it! You now have a rails server running on Docker. However, you will need to rebuild the docker container (steps 2 and 3) anytime you modify your rails server. In the next step, we will setup a volume to automatically copy new changes to the docker container.
 
-### Step 3: Create volume
+### Step 4: Create volume
 
 To create a volume, run the following command
 
@@ -56,7 +63,7 @@ docker run -itP railscont
 
 ### Running commands in container
 
-If the container is running use 'docker exec it railscont' to execute commands in the container. 
+If the container is running, use 'docker exec it railscont' to execute commands in the container. 
 
 ```
 docker exec -it railscont echo "I'm inside the container!"
@@ -74,6 +81,11 @@ docker run -it railscont bundle exec rails generate controller Welcome index
 Rather than typing "docker exec" before every command, you can attach to the containers bash to run commands inside the container. Just run the following command: 
 ```
 docker exec -it railscont bash
+```
+
+Now you can run commands directly inside the container 
+```
+echo "I'm inside the container!"
 ```
 
 
