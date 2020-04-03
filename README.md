@@ -7,8 +7,7 @@ Docker setup for Ruby On Rails
 First we need to build our Docker container. Docker containers provide an isolated linux environment, similar to a virtual box, but without hosting an entire Linux Operating system. You can learn more about Docker here: https://docs.docker.com/
 
 ### Step 1: Download
-
-First you need to install Docker for your machine. Simply download Docker Desktop from https://www.docker.com/products/docker-desktop
+To install docker on your machine, simply download Docker Desktop from https://www.docker.com/products/docker-desktop
 
 Next either clone this repository or download the Dockerfile. If you are using bundler, download the Dockerfile from 'withbundler/Dockerfile', otherwise use the Dockerfile in from 'withoutbundler/Dockerfile'.
 
@@ -63,7 +62,7 @@ docker run -itP railscont
 
 ### Running commands in container
 
-If the container is running, use 'docker exec it railscont' to execute commands in the container. 
+If the container is running, use 'docker exec -it railscont <command>' to execute commands in the container. 
 
 ```
 docker exec -it railscont echo "I'm inside the container!"
